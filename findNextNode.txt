@@ -1,0 +1,24 @@
+
+public TreeNode findNextNode(TreeNode n) {
+  if(n == null) return null;
+  if(n.right != null) {
+    return leftMost(n.right);
+  }
+  else {
+    TreeNode x = n;
+    TreeNode p = n.parent;
+    while(p != null && p.left != x) {
+      x = p;
+      p = p.parent;
+    }
+    return p;
+  }
+  
+  public TreeNode leftMost(TreeNode n) {
+    if(n == null) return null;
+    while(n.left != null) { 
+      n = n.left;
+    }
+    return n;
+  }
+}

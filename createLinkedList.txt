@@ -1,0 +1,41 @@
+public void createLinkeslists(TreeNode root, ArrayList<Linkedlist<TreeNode>> lists, int level) {
+  if(root == null) return;
+  Linkedlist<TreeNode> list = null;
+  if(lists.size() == level) {
+    list = new Linkedlist<TreeNode>();
+    lists.add(list);
+  }
+  else {
+    list = lists.get(level);
+  }
+  list.add(root);
+  createLinkedlists(root.left, lists, level+1);
+  createLinkedlists(root.right, lists, level+1);
+}
+
+public ArrayList<Linkeslist<TreeNode>> createlist(TreeNode root) {
+  ArrayList<Linkedlist<TreeNode>> lists = new  ArrayList<Linkedlist<TreeNode>>();
+  createLinkeslists(root, lists, 0);
+  return lists;
+}
+
+
+
+public ArrayList<Linkedlist<TreeNode>> list(TreeNode root) {
+   ArrayList<Linkedlist<TreeNode>> lists = new  ArrayList<Linkedlist<TreeNode>>();
+   Linkedlist<TreeNode> current = new Linkedlist<TreeNode>();
+  if(root != null) current.add(root);
+  while(current.size() > 0) {
+    Linkedlist<TreeNode> parent = current;
+    current = new Linkedlist<TreeNode>();
+    for(TreeNode parents: parent) {
+      if(parents.left != null) {
+        current.add(parents.left);
+      }
+      if(parents.right != null) {
+        current.add(parents.right);
+      }
+    }
+  }
+  return lists;
+}

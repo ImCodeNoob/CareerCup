@@ -1,0 +1,26 @@
+#sort the string, then compare if they are equal
+import java.util.*;
+public String sort(String str) {
+  char[] str_array = str.toCharAyyay();
+  Arrays.sort(str_array);
+  return new String(str_array);
+}
+public boolean permutataion(String s, String t) {
+  if(s.length() != t.length()) return false;
+  return sort(s).equals(sort(t));
+}
+
+#crate a char array to store the frequency of each character of string s
+iterate each char in string t, reduce the number of each char
+in array to see if the frequency > 0
+public boolean ifPermutation(String s, String t) {
+    if(s.length() != t.length()) return false;
+    int[] check = new int[256];
+    for(int i=0; i<s.length(); i++) {
+        check[s.charAt(i)]++;
+    }
+    for(int i=0; i<t.length(); i++) {
+        if(--check[t.charAt(i)] <0) return false;
+    }
+    return true;
+}

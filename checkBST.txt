@@ -1,0 +1,40 @@
+public boolean checkBST(TreeNode root) {
+  int[] array = new int[root.size];
+  copyBST(root, array);
+  for(int i =0; i<array.length; i++) {
+    if(array[i] <= array[i-1]) return false;
+  }
+  return true;
+}
+
+public void copyBST(TreeNode root, int[] array) {
+  int inde = 0;
+  if(root == null) return;
+  copyBST(root.left, array);
+  array[index] = root.data;
+  index++;
+  copyBST(root.right, array);
+}
+
+public boolean checkBST(TreeNode n) {
+  public int last_data = Integer.MIN_VALUE;
+  if(n == null) return true;
+  if(!checkBST(n.left)) return false;
+  if(n.data <= last_data) return false;
+  last_data = n.data;
+  if(!checkBST(n.right)) return false;
+  return true;
+}
+
+int min = Integer.MIN_VALUE;
+int max = Integer.MAX_VALUE;
+public boolean checkBST(TreeNode root) {
+  return checkBST(TreeNode root, min, max);
+}
+
+public boolean checkBST(TreeNode n, int min, int max) {
+  if(n == null) return true;
+  if(n.data < min || n.data > max) return false;
+  if(!checkBST(n.left, min, n.data) || !checkBST(n.right, n.data, max)) return false;
+  return true;
+}

@@ -1,0 +1,23 @@
+#input char[] array scan it, count the number of whitespace
+#scan the array again from the end, copy it to new array
+#replace the whitespace with %20
+public void replace(char[] str, int length) {
+  int count;
+  for(int i =0;i <length; i++) {
+    if(str[i] == ' ') count++;
+  }
+  int newlength  = length + count*2;
+  char[] replace = new char[newlength];
+  for(int i=length-1; i<=0; i--) {
+    if(str[i] == ' ') {
+      replace[newlength-1] = "0";
+      replace[newlength-2] = "2";
+      replace[newlength-3] = "%";
+      newlength = newlength - 3;
+    }
+    else {
+      replace[newlength-1] = str[i];
+      newlength--;
+    }
+  }
+}

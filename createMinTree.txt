@@ -1,0 +1,13 @@
+public TreeNode MinTree(int[] array, int start, int end) {
+  if(start > end) {
+    return null;
+  }
+  int mid = (start + end)/2;
+  TreeNode n  = new TreeNode(array[mid]);
+  n.left = TreeNode MinTree(array, start, mid-1);
+  n.right = TreeNode MinTree(array, mid+1, end);
+  return n;
+}
+public TreeNode MinTree(int[] array) {
+  return TreeNode MinTree(array, 0, array.length-1);
+}

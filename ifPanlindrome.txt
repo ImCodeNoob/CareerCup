@@ -1,0 +1,45 @@
+public boolean ifPanlindrome(LinkedlistNode head) {
+  LinkedlistNode cur = head;
+  LinkedlistNode pre = null;
+  while(cur != null) {
+    LinkedlistNode next = cur.next;
+    cur.next = pre;
+    pre = cur;
+    cur = next;
+  }
+  LinkedlistNode newhead = cur;
+  while(head != newhead) {
+    if(head.data != newhead.data) {
+      return false;
+      break;
+    }
+    head = head.next;
+    newhead = newhead.next;
+  }
+  return true;
+}
+
+
+//Solution 2
+public boolean Panlindrome(LinkedlistNode head) {
+  LinkedlistNode slow = head;
+  LinkedlistNode fast = head;
+  Stack<Integer> stack = new Stack<Integer>();
+  while(fast != null && fast.next != null) {
+    stack.push(slow.data);
+    slow = slow.next;
+    fast = fast.next.next;
+  }
+  
+  if(fast != null) {
+    slow = slow.next;
+  }
+  
+  while(slow != null) {
+    int top = stack.pop().intValue();
+    if(slow.data != top) return false;
+    slow = slow.next;
+  }
+  return true;
+}
+

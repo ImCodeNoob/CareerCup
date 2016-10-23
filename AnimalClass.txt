@@ -1,0 +1,62 @@
+public abstract class Animal {
+  public String name;
+  public int order;
+  public Animal(String n) {
+    name = n;
+  }
+  
+  public void setOrder(int ord) {
+    order = ord;
+  }
+  
+  public int getOrder() {
+    return order;
+  }
+  
+  public boolean isOrderThan(Animal a) {
+    return this.order < a.gerOrder();
+  }
+}
+
+public class AnimalQueue {
+  Linkedlist<Dog> dogs = new Linkedlist<Dog>();
+  Linkedlist<Cat> cats = new Linkedlist<Cat>();
+  private ind order;
+  
+  public void enqueue(Animal a) {
+    a.setOrder(order);
+    order++;
+    if(a instancesOf Dog) dogs.addLast(a);
+    else if(a instanceOf Cat) cats.addLast(a);
+  }
+  
+  public Animal dequeueAny() {
+    if(dogs.size() == 0) return Cat dequeueCat();
+    else if(cats.size() == 0) return dequeueDog();
+    
+    Dog d = dogs.peek();
+    Cat c = cats.peek();
+    if(d.isOlderThan(c)) return dequeueDog();
+    else return Cat dequeueCat();
+  }
+  
+  public Dog dequeueDog() {
+    return dogs.poll();
+  }
+  
+  public Cat dequeueCat() {
+    return cats.poll();
+  }
+  
+  public class Dog extends Animal {
+    public Dog(String n) {
+      super(n);
+    }
+  }
+  
+   public class Cat extends Animal {
+    public Cat(String n) {
+      super(n);
+    }
+  }
+}

@@ -1,0 +1,12 @@
+public Stack sortStack(Stack stack) {
+  Stack<Integer> s = new Stack<Integer>();
+  while(!stack.isEmpty()) {
+    int tem = stack.pop();
+    while(!s.isEmpty() && s.peek() > tem) {
+      stack.push(s.pop());
+    }
+    s.push(tem);
+  }
+  return s;
+  
+}

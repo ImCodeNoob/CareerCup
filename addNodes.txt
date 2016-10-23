@@ -1,0 +1,68 @@
+public LinkedlistNode addNodes(LinkedlistNode l1, LinkedlistNode l2, int carry) {
+  if(l1 == null && l2 == null && carry == 0) return null;
+  Linkedlist Node result = new LinkedlistNode(carry, null, null);
+  int value = carry;
+  if(l1 != null) {
+    value += l1.data;
+  }
+  if(l2 != null) {
+    value += l2.data;
+  }
+  if(l1 != null || l2 != null) {
+    LinkedlistNode more = addNodes(l1 == null ? null:l1.next, l2 == null ? null:l2.next, value >= 10 ? 1:0);
+    result.sexNext(more);
+  }
+  return result;
+}
+
+
+//Follow up
+public LinkedlistNode addLists(LinkedlistNode l1, LinkedlistNode l2) {
+  int len1 = length(l1);
+  int len2 = length(l2);
+  if(len1 < len2) {
+    padList(l1, len2 - len1);
+  }
+  else {
+    padList(l2, len1 - len2);
+  }
+  
+  LinkedlistNode head = addLast(l1, l2);
+  if(head.data > 9) {
+    LinkedlistNode newhead = new LinkedlistNode(head.data / 10);
+    newhead.data = head.data / 10;
+    head.data = head.data % 10;
+    newhead.next = head;
+    head = newhead;
+  }
+  return head;
+}
+
+public int length(LinkedlistNode l) {
+  int count;
+  while(l != null) {
+    l = l.next;
+    count += 1;
+  }
+  return count;
+}
+
+public void padList(LinkedlistNode l, int len) {
+  for(int i=0; i<len; i++) {
+    LinkedlistNode n = new LinkedlistNode(0);
+    n.next = l;
+    l = n;
+  }
+}
+
+public LinkedlistNode addLast(LinkedlistNode l1, LinkedlistNode l2) {
+  if(l1 == null && l2 == null) return null;
+  LinkedlistNode head = addLast(l1.next, l2.next);
+  LinkedlistNode newhead = new LinkedlistNode(l1.data + l2.data);
+  newhead.next = head;
+  if(head != null) {
+    newhead.data = head.data / + newhead.data;
+    head.data = head.data % 10;
+  }
+  return newhead;
+}

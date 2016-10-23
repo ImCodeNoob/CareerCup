@@ -1,0 +1,33 @@
+int stackSize = 100;
+int[] buffer = new int [stackSize * 3];
+int[] stackPointer = {-1, -1, -1};
+
+public void push(int stackNum, int value) {
+  if(stackPointer[stackNum] + 1 >= stackSize) {
+    throw new Exception("out of space");
+  }
+  stackPointer[stackNum]++;
+  buffer[topStack(stackNum)] = value;
+}
+
+public int pop(int stackNum) {
+  if(stackPointer[stackNum] == -1) return null;
+  int top = buffer[topStack(stackNum)];
+  stackPointer[stackNum]--;
+  buffer[topStack(stackNum)] = 0;
+  return top;
+}
+
+public int peek(int stackNum) {
+  if(stackPointer[stackNum] == -1) return null;
+  int data = buffer[topStack(stackNum)];
+  return data;
+}
+
+public boolean isEmpty(int stackNum) {
+  return if(stackPointer[stackNum] == -1);
+}
+
+public int topStack(int stackNum) {
+  return stackNum * stackSize + stackPointer[stackNum];
+}

@@ -1,0 +1,42 @@
+public class SetOfStacks {
+  public ArrayList<Stack> stacks = new ArrayList<Stack>();
+  public int capacity;
+  public SetOfStacks(int capacity) {
+    this.capacity = capacity;
+  }
+  
+  public void push(int v) {
+    Stack last = getLastStack();
+    if(last ! = null  && !last.isFull()) {
+      last.push(v);
+    }
+    else {
+      Stack stack = new Stack(capacity);
+      stack.push(v);
+      stacks.add(stack);
+    }
+  }
+  
+  public int pop() {
+    Stack last = getLastStack();
+    int item = last.pop();
+    if(last.size() == 0) {
+      stacks.remove(stacks.size()-1);
+    }
+    return item;
+  }
+  
+  public Stack getLastStack() {
+    if(stacks.size() == 0) return null;
+    Stack stack = stacks.get(stacks.size() -1);
+    return stack;
+  }
+  
+  public int popAt(int index) {
+    if(index >= stacks.size()) return null;
+    Stack stack = stacks.get(index);
+    int v = stack.pop();
+    if(stack.size() == 0) stacks.remove(index);
+    return v;
+  }
+}

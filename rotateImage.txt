@@ -1,0 +1,16 @@
+public int[][] rotateImage(int[][] image, int N) {
+  for(int layer=0; layer< N/2; layer++) {
+    int first = layer;
+    int last = N - 1 - layer;
+    
+    for(int i=first; i<last; i++) {
+      int top= image[first][i];
+      
+      image[first][i] = image[N-1-i][first];
+      image[N-1-i][first] = image[last][N-1-i];
+      image[last][N-1-i] = image[i][last];
+      image[i][last] = top;
+    }
+  }
+  return image;
+}

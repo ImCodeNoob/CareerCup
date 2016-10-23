@@ -1,0 +1,25 @@
+public Node findKthElement(LinkedlistNode head, int k) {
+  if(head == null) return null;
+  if(k <= 0) return null;
+  LinkedlistNode first = head;
+  for(int i=1; i<=k; i++) {
+    if(first.next != null) {
+      first = first.next;
+    }
+    else {
+      return null;
+    }
+  }
+  LinkedlistNode second = head;
+  while(first.next != null) {
+    first = first.next;
+    second = second.next;
+  }
+  return second;
+}
+
+public int kthToLast(LinkedlistNode head, int k) {
+  if(head == null) return 0;
+  int i = kthToLast(head.next, k) + 1;
+  if(i == k) System.out.println(head.data);
+  return i;
